@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 import 'cart.dart';  // Import cart page
 import 'contact.dart'; // Import contact page
+import 'product.dart'; // Import product page
 
 void main() {
   runApp(GreenTrayApp());
@@ -22,6 +23,8 @@ class GreenTrayApp extends StatelessWidget {
       routes: {
         '/cart': (context) => CartPage(), // Register the cart route
         '/contact': (context) => ContactUsPage(), // Register the contact route
+        // Add a route for the product page if needed
+        '/products': (context) => ProductPage(), // Assuming you want to navigate to ProductPage
       },
     );
   }
@@ -75,7 +78,7 @@ class HomePage extends StatelessWidget {
               leading: const Icon(Icons.shopping_bag),
               title: const Text('Products'),
               onTap: () {
-                // Navigate to Products
+                Navigator.pushNamed(context, '/products'); // Navigate to Products page
               },
             ),
             ListTile(
