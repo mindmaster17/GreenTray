@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 import 'product.dart'; // Import your ProductPage
 
 class SubscriptionPage extends StatefulWidget {
@@ -111,32 +111,55 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: isActive ? _editSubscription : null,
-              child: const Text('Edit Subscription'),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: isActive ? _cancelSubscription : null,
-              child: const Text('Cancel Subscription'),
+              icon: const Icon(Icons.edit),
+              label: const Text('Edit Subscription'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red, // Red color for cancel button
+                backgroundColor: Colors.blue.shade600,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: !isActive ? _renewSubscription : null,
-              child: const Text('Renew Subscription'),
+            ElevatedButton.icon(
+              onPressed: isActive ? _cancelSubscription : null,
+              icon: const Icon(Icons.cancel),
+              label: const Text('Cancel Subscription'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // Green color for renew button
+                backgroundColor: Colors.red.shade600,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton.icon(
+              onPressed: !isActive ? _renewSubscription : null,
+              icon: const Icon(Icons.refresh),
+              label: const Text('Renew Subscription'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green.shade600,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: () => _manageProducts(),
-              child: const Text('Manage Products'),
+              icon: const Icon(Icons.shopping_cart),
+              label: const Text('Manage Products'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Blue color for manage products button
+                backgroundColor: Colors.blue.shade800,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
             ),
             const Spacer(),
