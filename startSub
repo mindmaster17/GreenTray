@@ -1,0 +1,147 @@
+import 'package:flutter/material.dart';
+
+class StartSubPage extends StatefulWidget {
+  const StartSubPage({Key? key}) : super(key: key);
+
+  @override
+  _StartSubPageState createState() => _StartSubPageState();
+}
+
+class _StartSubPageState extends State<StartSubPage> {
+  String subscriptionFrequency = 'None'; // Default frequency
+  DateTime selectedDate = DateTime.now(); // Default date
+  bool oneTimeSubscription = false; // Whether the user selects a one-time subscription
+
+  void _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
+  bool _isNoneSelected() {
+    return subscriptionFrequency == 'None';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Start Your Subscription'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Welcome to Our Subscription Service!',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Choose a subscription frequency or subscribe for just one selected date.',
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'One-Time Subscription:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            Row(
+              children: [
+                Checkbox(
+                  value: oneTimeSubscription,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      oneTimeSubscription = value!;
+                      // Reset frequency if one-time subscription is selected
+                      if (oneTimeSubscription) {
+                        subscriptionFrequency = 'None';
+                      } else {
+                        subscriptionFrequency = 'None'; // Default frequency if unchecked
+                      }
+                    });
+                  },
+                ),
+                const Text('Subscribe for just one date'),
+              ],
+            ),
+            const SizedBox(height: 20),
+            if (!oneTimeSubscription) ...[
+              const Text(
+                'Select Frequency:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              DropdownButton<String>(
+                value: subscriptionFrequency,
+                items: <String>['None', 'Daily', 'Weekly', 'Monthly', 'Yearly']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: oneTimeSubscription
+                    ? null
+                    : (String? newValue) {
+                        setState(() {
+                          subscriptionFrequency = newValue!;
+                        });
+                      },
+              ),
+              const SizedBox(height: 20),
+            ],
+            const Text(
+              'Select Start Date:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            Row(
+              children: [
+                Text(
+                  "${selectedDate.toLocal()}".split(' ')[0],
+                  style: const TextStyle(fontSize: 16),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () => _selectDate(context),
+                  child: const Text('Choose Date'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _isNoneSelected()
+                  ? null // Disable button if 'None' is selected
+                  : () {
+                      // Implement subscription logic here
+                      String message;
+                      if (oneTimeSubscription) {
+                        message =
+                            'One-time subscription set for ${selectedDate.toLocal().toString().split(' ')[0]}';
+                      } else {
+                        message =
+                            '$subscriptionFrequency subscription set starting on ${selectedDate.toLocal().toString().split(' ')[0]}';
+                      }
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(message),
+                        ),
+                      );
+                    },
+              child: const Text('Start Subscription'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
