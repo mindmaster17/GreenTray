@@ -1,6 +1,16 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'signup.dart'; // Import signup page
 import 'cart.dart';  // Import cart page
+import 'product.dart';  // Import product page
+import 'contact.dart';  // Import contact page
+import 'profile.dart';  // Import profile page
+import 'accessibility.dart';  // Import acessibility page
+import 'subscription.dart';  // Import Subscription page
+import 'payment.dart';  // Import Payment page
+import 'about.dart'; // Import about page
 
 void main() {
   runApp(GreenTrayApp());
@@ -22,6 +32,13 @@ class GreenTrayApp extends StatelessWidget {
       routes: {
         '/signup': (context) => SignUpPage(), // Register the signup route
         '/cart': (context) => CartPage(), // Register the cart route
+        '/product': (context) => const ProductPage(), // Register the product route
+        '/profile': (context) => const ProfilePage(), // Register the profile route
+        '/accessibility': (context) => const AccessibilitySettingsPage(), // Register the accessibility route
+        '/contact': (context) => ContactUsPage(), // Register the accessibility route
+        '/subscription': (context) => SubscriptionPage(), // Register the Subscription route
+        '/payment': (context) => PaymentPage(), // Register the payment route
+        '/about': (context) => AboutPage(), // Register the about route
       },
     );
   }
@@ -67,35 +84,56 @@ class HomePage extends StatelessWidget {
               leading: const Icon(Icons.home),
               title: const Text('Home'),
               onTap: () {
-                // Navigate to Home
+                Navigator.pushNamed(context, '/home');// Navigate to Home
               },
             ),
             ListTile(
               leading: const Icon(Icons.shopping_bag),
               title: const Text('Products'),
               onTap: () {
-                // Navigate to Products
+                Navigator.pushNamed(context, '/product');       // Navigate to Products
               },
             ),
             ListTile(
               leading: const Icon(Icons.subscriptions),
               title: const Text('Subscriptions'),
               onTap: () {
-                // Navigate to Subscriptions
+                Navigator.pushNamed(context, '/subscription');// Navigate to Subscriptions
               },
             ),
             ListTile(
               leading: const Icon(Icons.local_offer),
               title: const Text('Offers'),
               onTap: () {
-                // Navigate to Offers
+                Navigator.pushNamed(context, '/offers');// Navigate to Offers
+              },
+            ),
+                        ListTile(
+              leading: const Icon(Icons.local_offer),
+              title: const Text('Accessibility'),
+              onTap: () {
+                Navigator.pushNamed(context, '/accessibility');// Navigate to Accessibility
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.account_circle_rounded),
+              title: const Text('Profile'),
+              onTap: () {
+                Navigator.pushNamed(context, '/profile');       // Navigate to Profile
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('About'),
+              onTap: () {
+                Navigator.pushNamed(context, '/about'); // Navigate to About page
               },
             ),
             ListTile(
               leading: const Icon(Icons.contact_mail),
               title: const Text('Contact Us'),
               onTap: () {
-                // Navigate to Contact Us
+                Navigator.pushNamed(context, '/contact');       // Navigate to Contact Us
               },
             ),
           ],
@@ -193,7 +231,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 15.0),
                 ElevatedButton(
                   onPressed: () {
-                    // Sign up action
+              Navigator.pushNamed(context, '/signup');
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.orange, backgroundColor: Colors.white, // Button text color
