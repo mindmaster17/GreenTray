@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 import 'cart.dart';  // Import cart page
 import 'contact.dart'; // Import contact page
 import 'product.dart'; // Import product page
+import 'subscription.dart'; // Import subscription page
 
 void main() {
   runApp(GreenTrayApp());
@@ -23,8 +24,8 @@ class GreenTrayApp extends StatelessWidget {
       routes: {
         '/cart': (context) => CartPage(), // Register the cart route
         '/contact': (context) => ContactUsPage(), // Register the contact route
-        // Add a route for the product page if needed
         '/products': (context) => ProductPage(), // Assuming you want to navigate to ProductPage
+        '/subscriptions': (context) => SubscriptionPage(), // Register the subscription route
       },
     );
   }
@@ -85,7 +86,7 @@ class HomePage extends StatelessWidget {
               leading: const Icon(Icons.subscriptions),
               title: const Text('Subscriptions'),
               onTap: () {
-                // Navigate to Subscriptions
+                Navigator.pushNamed(context, '/subscriptions'); // Navigate to Subscriptions page
               },
             ),
             ListTile(
