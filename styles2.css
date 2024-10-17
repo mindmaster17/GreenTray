@@ -4,6 +4,10 @@
     width: 100vw;
     background-size: cover;
 }
+.img3{
+    height:75px;
+    width:75px;
+}
 
 .font1 {
     font-family: roboto;
