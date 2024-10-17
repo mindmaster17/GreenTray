@@ -107,7 +107,7 @@ class HomePage extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.contact_mail),
-              title: const Text('Contact Us'),
+              title: const Text('Feedback/Contact Us'),
               onTap: () {
                 Navigator.pushNamed(context, '/contact'); // Navigate to Contact Us
               },
