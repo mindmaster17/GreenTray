@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'frequency.dart'; // Import the frequency page
+
+void main() => runApp(GreenTrayApp() as Widget);
+
+class GreenTrayApp {
+  // Add your app configuration here
+}
 
 class CartPage extends StatefulWidget {
   @override
@@ -117,7 +124,11 @@ class _CartPageState extends State<CartPage> {
                       SizedBox(height: 10.0),
                       ElevatedButton(
                         onPressed: () {
-                          // Implement checkout action
+                          // Navigate to the frequency selection page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => FrequencyPage()),
+                          );
                         },
                         child: Text('Proceed to Checkout'),
                         style: ElevatedButton.styleFrom(
