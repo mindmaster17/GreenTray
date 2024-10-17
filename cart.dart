@@ -130,7 +130,7 @@ class _CartPageState extends State<CartPage> {
                             MaterialPageRoute(builder: (context) => FrequencyPage()),
                           );
                         },
-                        child: Text('Proceed to Checkout'),
+                        child: Text('Select Frequency'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,
                           padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 60.0),
