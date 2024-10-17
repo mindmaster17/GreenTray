@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PACE Explorer: Ocean and Atmosphere Data Visualization for Students. An educational platform to explore NASA PACE satellite data.">
+    <meta name="keywords" content="PACE Explorer, NASA PACE, ocean data, atmosphere data, education">
+    <link rel="icon" type="image/jpg" href="favicon.jpg">
+    <title>PACE Explorer: Ocean and Atmosphere Data Visualization for Students</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .full-page {
+            min-height: 100vh;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #1f2937;
+            /* Gray-900 */
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 50;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            margin-left: 1rem;
+            text-decoration: none;
+        }
+        
+        nav a:hover {
+            color: #cbd5e1;
+            /* Gray-400 */
+        }
+        
+        .button {
+            background-color: #48bb78;
+            /* Green-500 */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            /* Rounded */
+            text-decoration: none;
+            margin-left: 0.5rem;
+        }
+        
+        .button:hover {
+            background-color: #38a169;
+            /* Green-600 */
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .full-page {
+            min-height: 100vh;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .card1 {
+            background-color: aliceblue;
+            height: 60vh;
+            width: 25vw;
+            border-radius: 15px;
+        }
+        
+        .cards {
+            background-color: aliceblue;
+            height: 50vh;
+            width: 60vw;
+            border-radius: 15px;
+        }
+        
+        .img1 {
+            height: 38vh;
+            width: 100vw;
+            margin-top: 36px;
+            padding-bottom: 10px;
+            border-radius: 15px;
+        }
+        
+        .imgs {
+            height: 20vh;
+            width: 100vw;
+            margin-top: 36px;
+            padding-bottom: 10px;
+            border-radius: 15px;
+        }
+        
+        .full-page {
+            min-height: 100vh;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #1f2937;
+            /* Gray-900 */
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 50;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            margin-left: 1rem;
+            text-decoration: none;
+        }
+        
+        nav a:hover {
+            color: #cbd5e1;
+            /* Gray-400 */
+        }
+        
+        .button {
+            background-color: #48bb78;
+            /* Green-500 */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            /* Rounded */
+            text-decoration: none;
+            margin-left: 0.5rem;
+        }
+        
+        .button:hover {
+            background-color: #38a169;
+            /* Green-600 */
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .ha {
+    list-style: none;
+}
+
+.ma {
+    margin: 9px;
+}
+
+.ha1 {
+    color: blue;
+}
+
+.explore-button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.explore-button:hover {
+    background-color: #666;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+    </style>
+
+<!-- Hero Section -->
+<section id="home" class="relative bg-cover bg-center hero"
+    style="background-image: url('https://yildirimgazetesicom.teimg.com/yildirimgazetesi-com/uploads/2024/06/spi-report.jpg');">
+    <div class="container mx-auto text-center relative z-10 py-24">
+        <h1 class="text-5xl font-bold text-white">Login!!!</h1>
+        <p class="text-lg text-white mt-4">BRINGING NATURE TO YOUR DOORSTEP</p>
+
+    </div>
+</section>
+
+
+
+<body>
+    <!-- Login and Registration Section -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Login Card -->
+            <div class="col-md-6">
+                <div class="">
+                    <h3 class="card-title text-center">Login</h3>
+                    <form name="login_form" id="login_form" method="post" action="#" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="login_email">Email</label>
+                            <input type="email" name="login_email" id="login_email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="login_password">Password</label>
+                            <input type="password" name="login_password" id="login_password" class="form-control" placeholder="Enter your password">
+                        </div>
+                        <div class="d-flex flex-row justify-content-center">
+                        <button type="button" id="login" name="login" class="btn btn-success w-50">Login</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Registration Card -->
+            <div class="col-md-6">
+                <div class="">
+                    <h3 class="card-title text-center">Register</h3>
+                    <form name="registration_form" id="registration_form" method="post" action="#" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="username">Name</label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
+                        </div>
+                        <div class="d-flex flex-row">
+                        <button type="button" id="register" name="register" class="btn btn-success m-2 h-10 w-50">Register Now</button>
+                        <button type="button" id="google" name="google" class="btn btn-danger w-50 h-10 m-2">Sign up with Google</button>
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-2">
+        <div class="mt-4 text text-center p-3">
+            <p>Follow us on:</p>
+            <a href="#" class="text-gray-600 hover:text-blue-500 mx-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-600 hover:text-blue-500 mx-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-600 hover:text-blue-500 mx-2"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-600 hover:text-blue-500 mx-2"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+        <div class="container mx-auto text-center">
+            <p>© 2024 GreenTray. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+  
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <!-- Include Easing.js -->
+<script src="https://cdn.jsdelivr.net/gh/danheberden/easing.js/dist/easing.js.min.js"></script>
+
+        <script src="lib/slick/slick.min.js"></script>
+        <!-- Include Slick Carousel (version 1.3.7) -->
+<script src="https://www.cdnpkg.com/slick-carousel/file/slick.min.js"></script>
+
+
+      <!-- Template Javascript -->
+      <script src="./main.js"></script>
+    </body>
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInWithRedirect } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+  
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries getDatabase
+  
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyCkNJFimfRBFgwiFRCNDtTPlo8g-2JIc-M",
+           authDomain: "login-page-c3c64.firebaseapp.com",
+           databaseURL: "https://login-page-c3c64-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "login-page-c3c64",
+            storageBucket: "login-page-c3c64.appspot.com",
+            messagingSenderId: "426921518510",
+            appId: "1:426921518510:web:98a3252f91b0fdeaa5943f",
+            measurementId: "G-SKKHTLF0BH"
+        };
+  
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+         const provider = new GoogleAuthProvider()
+        console.log(app);
+  
+        
+  
+              //----- New Registration code start
+      document.getElementById("register").addEventListener("click", function () {
+          var email = document.getElementById("email").value;
+          var password = document.getElementById("password").value;
+          var username = document.getElementById("username").value;
+  
+          // For adding Realtime Database
+          createUserWithEmailAndPassword(auth, email, password)
+              .then((res) => {
+              let user = {
+                  username: username,
+                  email: email,
+                  password: password,
+              };
+  
+              const db = getDatabase();
+              set(ref(db, `users/${res.user.uid}`), user)
+                  .then(() => {
+                  alert("new user is registered");
+                  window.location = "index.html";
+                  })
+                  .catch((err) => {
+                  console.log("err=>", err);
+                  });
+              })
+              .catch((err) => {
+              console.log("err=>", err);
+              });
+  
+          // For new registration
+          createUserWithEmailAndPassword(auth, email, password)
+              .then((userCredential) => {
+              const user = userCredential.user;
+              console.log(user);
+              alert("Registration successfully!!");
+              })
+              .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorMessage);
+              alert(error);
+              });
+          });
+          function writeUserData( name, email, imageUrl) {
+            const db = getDatabase();
+            set(ref(db, 'users/' + userId), {
+              username: name,
+              email: email,
+              profile_picture : imageUrl,
+            });
+          }
+          
+          
+          //----- End
+  
+  
+        //----- Login code start	  
+        document.getElementById("login").addEventListener("click", function() {
+            var email =  document.getElementById("login_email").value;
+            var password = document.getElementById("login_password").value;
+  
+            signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in 
+              const user = userCredential.user;
+              console.log(user);
+              alert(user.email+" Login successfully!!!");
+              document.getElementById('logout').style.display = 'block';
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorMessage);
+              alert(errorMessage);
+            });		  		  
+        });
+        //----- End
+  
+        //----- Logout code start	  
+        document.getElementById("logout").addEventListener("click", function() {
+            signOut(auth).then(() => {
+                // Sign-out successful.
+                console.log('Sign-out successful.');
+                alert('Sign-out successful.');
+                document.getElementById('logout').style.display = 'none';
+              }).catch((error) => {
+                // An error happened.
+                console.log('An error happened.');
+              });		  		  
+        });
+        //----- End
+  
+    </script>
+  
+  </html>
