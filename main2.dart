@@ -3,6 +3,7 @@ import 'cart.dart';  // Import cart page
 import 'contact.dart'; // Import contact page
 import 'product.dart'; // Import product page
 import 'subscription.dart'; // Import subscription page
+import 'about.dart'; // Import about page
 
 void main() {
   runApp(GreenTrayApp());
@@ -26,6 +27,7 @@ class GreenTrayApp extends StatelessWidget {
         '/contact': (context) => ContactUsPage(), // Register the contact route
         '/products': (context) => ProductPage(), // Assuming you want to navigate to ProductPage
         '/subscriptions': (context) => SubscriptionPage(), // Register the subscription route
+        '/about': (context) => AboutPage(), // Register the about route
       },
     );
   }
@@ -94,6 +96,13 @@ class HomePage extends StatelessWidget {
               title: const Text('Offers'),
               onTap: () {
                 // Navigate to Offers
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('About'),
+              onTap: () {
+                Navigator.pushNamed(context, '/about'); // Navigate to About page
               },
             ),
             ListTile(
