@@ -236,13 +236,13 @@ nav a:hover {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(6, 0fr);
+    grid-template-columns: repeat(6, 2fr);
     gap: 20px;
 }
 
 .product {
     background-color: hsl(44, 95%, 69%);
-    height: 36vh;
+    height:50vh;
     width: 10vw;
     padding: 20px;
     border-radius: 8px;
