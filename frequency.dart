@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'payment.dart';  // Import payment.dart
+
 void main() => runApp(GreenTrayApp() as Widget);
 
 class GreenTrayApp {
@@ -12,11 +14,11 @@ class FrequencyPage extends StatefulWidget {
 }
 
 class _FrequencyPageState extends State<FrequencyPage> {
-  String selectedFrequency = 'Daily'; // Default selection
+  String selectedFrequency = 'None'; // Default selection is now 'None'
   DateTime? selectedDate; // To hold selected date
 
-  // List of frequency options
-  final List<String> frequencyOptions = ['Daily', 'Weekly', 'Monthly', 'Yearly'];
+  // List of frequency options with 'None' as the default option
+  final List<String> frequencyOptions = ['None', 'Daily', 'Weekly', 'Monthly', 'Yearly', 'Custom Date'];
 
   // Function to pick a date from calendar
   Future<void> _selectDate(BuildContext context) async {
@@ -59,36 +61,52 @@ class _FrequencyPageState extends State<FrequencyPage> {
               onChanged: (String? newValue) {
                 setState(() {
                   selectedFrequency = newValue!;
+                  if (selectedFrequency != 'Custom Date') {
+                    selectedDate = null; // Reset date if not Custom Date
+                  }
                 });
               },
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Select Delivery Date:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            TextButton(
-              onPressed: () => _selectDate(context),
-              child: const Text(
-                'Choose Date',
-                style: TextStyle(fontSize: 16),
+            if (selectedFrequency == 'Custom Date') ...[
+              const Text(
+                'Select Delivery Date:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            ),
-            selectedDate != null
-                ? Text(
-                    "Selected date: ${selectedDate!.toLocal()}".split(' ')[0],
-                    style: const TextStyle(fontSize: 16),
-                  )
-                : const Text(
-                    'No date selected',
-                    style: TextStyle(fontSize: 16),
-                  ),
+              TextButton(
+                onPressed: () => _selectDate(context),
+                child: const Text(
+                  'Choose Date',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              selectedDate != null
+                  ? Text(
+                      "Selected date: ${selectedDate!.toLocal()}".split(' ')[0],
+                      style: const TextStyle(fontSize: 16),
+                    )
+                  : const Text(
+                      'No date selected',
+                      style: TextStyle(fontSize: 16),
+                    ),
+            ],
             const Spacer(),
             ElevatedButton(
               onPressed: () {
-                // Handle the save or next logic here
-                if (selectedDate != null) {
-                  // Navigate to the next screen or save data
+                // Ensure a frequency is selected (excluding 'None')
+                if (selectedFrequency != 'None' &&
+                    (selectedFrequency != 'Custom Date' || selectedDate != null)) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PaymentPage()),
+                  );
+                } else {
+                  // Show alert if no frequency or date is selected
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please select a delivery frequency'),
+                    ),
+                  );
                 }
               },
               child: const Text('Confirm'),
